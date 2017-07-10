@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 if(odometer != null && measurementInRun) {
                     distance = odometer.getDistance();
                 }
-                distanceView.setText(distance);
+                distanceView.setText(distance + " m");
                 handler.postDelayed(this, 1000);
 
                 /*distanceView.setText(distance + " secs");
