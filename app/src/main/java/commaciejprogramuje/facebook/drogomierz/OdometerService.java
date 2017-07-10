@@ -21,12 +21,20 @@ public class OdometerService extends Service {
     public OdometerService() {
     }
 
+    public static void setDistanceInMeters(int distanceInMeters) {
+        OdometerService.distanceInMeters = distanceInMeters;
+    }
+
+    public static void setLastLocation(Location lastLocation) {
+        OdometerService.lastLocation = lastLocation;
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
         return binder;
     }
 
-    public class OdometerBinder extends Binder {
+    class OdometerBinder extends Binder {
         OdometerService getOdometer() {
             return OdometerService.this;
         }

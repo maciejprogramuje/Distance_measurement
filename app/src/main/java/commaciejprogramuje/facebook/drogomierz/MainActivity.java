@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     private OdometerService odometer;
     private boolean bound = false;
     private int distance = 0;
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
                 if(odometer != null && measurementInRun) {
                     distance = odometer.getDistance();
                 }
-                distanceView.setText(distance + " m");
+                distanceView.setText(distance);
                 handler.postDelayed(this, 1000);
 
                 /*distanceView.setText(distance + " secs");
@@ -99,6 +99,7 @@ public class MainActivity extends Activity {
 
     public void resetMeasurement(View view) {
         measurementInRun = false;
-        distance = 0;
+        OdometerService.setDistanceInMeters(0);
+        OdometerService.setLastLocation(null);
     }
 }
