@@ -3,4 +3,5 @@
 <string name="start">Start measurement</string>
 <string name="stop">Stop measurement</string>
 <string name="reset">Cancel measurement</string>
+<string name="meters"> meters</string>
 </resources>

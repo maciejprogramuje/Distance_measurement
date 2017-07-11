@@ -1,6 +1,5 @@
 package commaciejprogramuje.facebook.drogomierz;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             distance = savedInstanceState.getInt("distance");
             measurementInRun = savedInstanceState.getBoolean("measurementInRun");
         }
@@ -48,21 +47,16 @@ public class MainActivity extends AppCompatActivity {
     private void watchMileage() {
         final TextView distanceView = (TextView) findViewById(R.id.distance);
         final Handler handler = new Handler();
-        
+
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if(odometer != null && measurementInRun) {
+                if (odometer != null && measurementInRun) {
                     distance = odometer.getDistance();
                 }
-                distanceView.setText(distance + " m");
+                String tempStr = getString(R.string.meters);
+                distanceView.setText(distance + tempStr);
                 handler.postDelayed(this, 1000);
-
-                /*distanceView.setText(distance + " secs");
-                if(measurementInRun) {
-                    distance++;
-                }
-                handler.postDelayed(this, 1000);*/
             }
         });
     }
