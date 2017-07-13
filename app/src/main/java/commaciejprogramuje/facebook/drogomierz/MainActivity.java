@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean bound = false;
     private int distance = 0;
     private boolean measurementInRun = false;
+    TextView distanceView;
 
     private ServiceConnection connection = new ServiceConnection() {
         @Override
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        distanceView = (TextView) findViewById(R.id.distance);
 
         if (savedInstanceState != null) {
             distance = savedInstanceState.getInt("distance");
@@ -45,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void watchMileage() {
-        final TextView distanceView = (TextView) findViewById(R.id.distance);
         final Handler handler = new Handler();
 
         handler.post(new Runnable() {
@@ -54,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 if (odometer != null && measurementInRun) {
                     distance = odometer.getDistance();
                 }
-                String tempStr = getString(R.string.meters);
-                distanceView.setText(distance + tempStr);
+                String tempStr = distance + " " + getString(R.string.meters);
+                distanceView.setText(tempStr);
                 handler.postDelayed(this, 1000);
             }
         });
@@ -95,5 +96,6 @@ public class MainActivity extends AppCompatActivity {
         measurementInRun = false;
         OdometerService.setDistanceInMeters(0);
         OdometerService.setLastLocation(null);
+        distanceView.setText("");
     }
 }

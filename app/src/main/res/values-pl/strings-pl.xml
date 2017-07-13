@@ -3,5 +3,5 @@
 <string name="start">Rozpocznij pomiar</string>
 <string name="stop">Przerwij pomiar</string>
 <string name="reset">Wyzeruj pomiar</string>
-<string name="meters"> metrów</string>
+<string name="meters">metrów</string>
 </resources>
